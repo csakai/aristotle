@@ -1,7 +1,6 @@
 import Canvas from '@/designer/Canvas'
 // @ts-ignore
-import Gate from '@/designer/Gate.js'
-import ic from '@aristotle/logic-gates'
+import Gate from '@/designer/Gate'
 import { Component, Vue } from 'vue-property-decorator'
 
 @Component

@@ -1,4 +1,6 @@
 import draw2d from 'draw2d'
+import Gate from './Gate'
+import { Circuit } from '@aristotle/logic-circuit'
 
 class Canvas extends draw2d.Canvas {
   public mouseDown: boolean = false
@@ -9,6 +11,7 @@ class Canvas extends draw2d.Canvas {
   public zoomFactor: number = 1
   public currentHoverFigure: any = null
   public editPolicy: draw2d.util.ArrayList
+  public circuit: Circuit = new Circuit()
 
   constructor (elementId: string) {
     super(elementId)
@@ -18,14 +21,29 @@ class Canvas extends draw2d.Canvas {
     document.addEventListener('mouseup', this.onBoundlessMouseUp)
   }
 
-  public createConnection = (sourcePort: draw2d.Port, targetPort: draw2d.Port): draw2d.Connection => {
+  public createConnection = (): draw2d.Connection => {
     const connection = new draw2d.Connection()
 
     connection.setOutlineColor('#000000')
+    
     connection.setOutlineStroke(1)
     connection.setColor('#ff0000')
     connection.setGlow(false)
     connection.setRouter(new draw2d.layout.connection.CircuitConnectionRouter())
+    connection.on('added', () => {
+      const source = connection.sourcePort.parent
+      const target = connection.targetPort.parent
+
+      console.log('source: ', source)
+    })
+
+    connection.on('removed', (conn) => {
+      console.log('conn: ', conn)
+      const source = connection.sourcePort.parent
+      const target = connection.targetPort.parent
+
+      console.log('source: ', source)
+    })
 
     return connection
   }

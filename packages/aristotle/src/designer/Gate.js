@@ -6,6 +6,8 @@ import svgNand from '@/assets/logical-nand.svg'
 import svgXnor from '@/assets/logical-xnor.svg'
 import svgOr from '@/assets/logical-or.svg'
 
+import render from '@aristotle/logic-gates'
+
 const Gates = {
     AND: 'AND',
     NAND: 'NAND',
@@ -15,50 +17,64 @@ const Gates = {
     XNOR: 'XNOR'
 }
 
-const logicGates = {
-    [Gates.AND]: {
-        width: 97,
-        height: 52,
-        svg: svgAnd
-    },
-    [Gates.NAND]: {
-        width: 105,
-        height: 52,
-        svg: svgNand
-    },
-    [Gates.XNOR]: {
-        width: 116,
-        height: 52,
-        svg: svgXnor
-    },
-    [Gates.OR]: {
-        width: 108,
-        height: 52,
-        svg: svgOr
-    }
+const svg = {
+  top: [
+    { label: 'ABC', type: 'input' },
+    { label: 'B', type: 'input' },
+    { label: 'CEEEE', type: 'input' },
+    { label: 'DEF', type: 'input' }
+  ],
+  left: [
+    { label: 'ABC', type: 'input' },
+    { label: 'EDB', type: 'input' }
+  ],
+  bottom: [
+    { label: 'Q', type: 'input' },
+    { label: 'sfdfsd', type: 'input' }
+  ],
+  right: [
+    { label: 'EWAA', type: 'output' },
+    { label: 'BDE', type: 'output' },
+    { label: 'SS', type: 'output' },
+    { label: 'RRR', type: 'output' }
+  ]
 }
 
 class Gate extends draw2d.shape.basic.Image {
     constructor (gateType) {
-        super({
-            path: logicGates[Gates[gateType]].svg,
-            resizeable: false,
-            width: logicGates[Gates[gateType]].width,
-            height: logicGates[Gates[gateType]].height,
-        })
+      super({ resizeable: false })
 
-        this.assignInputPort(13)
-        this.assignInputPort(38)
-        this.assignOutputPort()
-        this.on('click', this.click)
+      this.render()
+      this.on('click', this.click)
+      this.on('added', this.addEventListeners)
     }
 
-    assignInputPort = (yValue) => {
-        this.createPort('input', new draw2d.layout.locator.XYAbsPortLocator(0, yValue))
+    addEventListeners = () => {
+      this.canvas.on('select', this.updateSelectionColor)
+      this.canvas.on('reset', this.updateSelectionColor)
+      this.canvas.html[0].addEventListener('click', this.updateSelectionColor)
     }
 
-    assignOutputPort = () => {
-        this.createPort('output', new draw2d.layout.locator.RightLocator({}))
+    render = () => {
+      const { path, width, height, ports } = render(svg, '#000')
+
+      this.setPath(path)
+      this.setWidth(width)
+      this.setHeight(height)
+      this.setPorts(ports)
+    }
+
+    updateSelectionColor = (selection, event) => {
+      const isSelected = !!~this.canvas.selection.all.data.indexOf(this)
+      const color = isSelected ? '#ff0000' : '#000'
+
+      this.setPath(render(svg, color).path)
+    }
+
+    setPorts = (ports) => {
+      ports.forEach(({ x, y, type }) => {
+        this.createPort(type, new draw2d.layout.locator.XYAbsPortLocator(x, y))
+      })
     }
 
     setOutputConnectionColor = (color) => {

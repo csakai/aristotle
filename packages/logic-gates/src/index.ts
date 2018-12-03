@@ -1,4 +1,3 @@
-import ic from './ic'
+import render from './ic.ts'
 
-console.log('herse')
-export default ic
+export default render
