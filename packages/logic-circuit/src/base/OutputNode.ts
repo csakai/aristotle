@@ -1,5 +1,4 @@
 import CircuitNode from './CircuitNode'
-import LogicValue from '../types/LogicValue'
 
 class OutputNode extends CircuitNode {
   update (value) {

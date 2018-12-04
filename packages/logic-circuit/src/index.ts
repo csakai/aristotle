@@ -4,6 +4,7 @@ import InputNode from './base/InputNode'
 import OutputNode from './base/OutputNode'
 import Nor from './gates/Nor'
 import Or from './gates/Or'
+import LogicValue from './types/LogicValue'
 
 export {
   Circuit,
@@ -11,5 +12,6 @@ export {
   InputNode,
   OutputNode,
   Nor,
-  Or
+  Or,
+  LogicValue
 }

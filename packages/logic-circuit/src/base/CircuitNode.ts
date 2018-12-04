@@ -1,8 +1,8 @@
-import LogicValue from '../types/LogicValue'
 import Connection from '../types/Connection'
+import LogicValue from '../types/LogicValue'
 
 class CircuitNode {
-  inputValues: Array<LogicValue> = []
+  inputValues: Array<number> = []
 
   outputs: Array<Connection> = []
 
@@ -14,28 +14,30 @@ class CircuitNode {
     this.name = name
   }
 
-  value: LogicValue = LogicValue.UNKNOWN
+  value: number = LogicValue.UNKNOWN
 
-  newValue: LogicValue = LogicValue.UNKNOWN
+  newValue: number = LogicValue.UNKNOWN
 
-  protected eval (): LogicValue {
+  events: Array<{ eventType: string, callback: Function }> = []
+
+  protected eval (): number {
     return this.value
   }
 
-  updateOutputs (newValue: LogicValue) {
+  updateOutputs (newValue: number) {
     this.outputs.forEach(({ node, index }: Connection) => {
       node.update(newValue, index)
     })
   }
 
-  protected valueCount (compare: LogicValue): number {
+  protected valueCount (compare: number): number {
     return this
       .inputValues
       .filter((value) => value === compare)
       .length
   }
 
-  update (value: LogicValue, index: number) {
+  update (value: number, index: number) {
     this.inputValues[index] = value
     this.newValue = this.eval()
   }
@@ -45,12 +47,33 @@ class CircuitNode {
       this.isValueChanged = true
       this.value = this.newValue
       this.updateOutputs(this.newValue)
+      this.invokeEvent('change', this.newValue)
       this.newValue = LogicValue.UNKNOWN
-      
-      return this.outputs.map(({ node }) => node)
+
+      return this.outputs.map(({ node }) => {
+        return node
+      })
     }
     return []
   }
+
+  on (eventType: string, callback: Function) {
+    this.events.push({ eventType, callback })
+  }
+
+  invokeEvent (eventType: string, value: number) {
+    this.events.forEach((event) => {
+      if (event.eventType === eventType) {
+        event.callback(value)
+      }
+    })
+  }
+
+  reset () {
+    this.value = LogicValue.UNKNOWN
+    this.newValue = LogicValue.UNKNOWN
+  }
 }
+
 
 export default CircuitNode

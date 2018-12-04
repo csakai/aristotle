@@ -2,15 +2,26 @@ import Or from './Or'
 import LogicValue from '../types/LogicValue'
 
 class Nor extends Or {
-  protected eval (): LogicValue {
-    switch (super.eval()) {
-      case LogicValue.TRUE:
-        return LogicValue.FALSE
-      case LogicValue.FALSE:
-        return LogicValue.TRUE
-      default:
-        return LogicValue.UNKNOWN
+  // protected eval (): number {
+  //   switch (super.eval()) {
+  //     case LogicValue.TRUE:
+  //       return LogicValue.FALSE
+  //     case LogicValue.FALSE:
+  //       return LogicValue.TRUE
+  //     default:
+  //       return LogicValue.UNKNOWN
+  //   }
+  // }
+  protected eval (): number {
+    if (this.valueCount(LogicValue.TRUE)) {
+      return LogicValue.FALSE
     }
+
+    if (this.valueCount(LogicValue.UNKNOWN)) {
+      return LogicValue.UNKNOWN
+    }
+
+    return LogicValue.TRUE
   }
 }
 

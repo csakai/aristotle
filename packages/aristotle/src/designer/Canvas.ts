@@ -2,6 +2,17 @@ import draw2d from 'draw2d'
 import Gate from './Gate'
 import { Circuit } from '@aristotle/logic-circuit'
 
+const getPortIndex = (port, type): number => {
+  const ports = port.parent[`${type}Ports`].data
+
+  for (let i = 0; i < ports.length; i++) {
+    if (ports[i] === port) {
+      return i
+    }
+  }
+  return -1
+}
+
 class Canvas extends draw2d.Canvas {
   public mouseDown: boolean = false
   public mouseDownX: number = 0
@@ -17,6 +28,8 @@ class Canvas extends draw2d.Canvas {
     super(elementId)
     this.installEditPolicies()
     this.setScrollArea(elementId)
+    console.log('creating circuit')
+    this.circuit = new Circuit()
     document.addEventListener('mousemove', this.onBoundlessMouseMove)
     document.addEventListener('mouseup', this.onBoundlessMouseUp)
   }
@@ -25,27 +38,58 @@ class Canvas extends draw2d.Canvas {
     const connection = new draw2d.Connection()
 
     connection.setOutlineColor('#000000')
-    
+
     connection.setOutlineStroke(1)
-    connection.setColor('#ff0000')
+    connection.setColor('#808080')
     connection.setGlow(false)
     connection.setRouter(new draw2d.layout.connection.CircuitConnectionRouter())
-    connection.on('added', () => {
-      const source = connection.sourcePort.parent
-      const target = connection.targetPort.parent
-
-      console.log('source: ', source)
-    })
-
-    connection.on('removed', (conn) => {
-      console.log('conn: ', conn)
-      const source = connection.sourcePort.parent
-      const target = connection.targetPort.parent
-
-      console.log('source: ', source)
-    })
+    connection.on('added', () => this.addConnection(connection))
+    connection.on('removed', this.removeConnection)
 
     return connection
+  }
+
+  public addNode (node: Gate, x: number, y: number) {
+    super.add(node, x, y)
+    this.circuit.addNode(node.node)
+  }
+
+  public step () {
+    const debug = (n: number) => {
+      console.log(`-----STEP ${n}-----`)
+
+      if (!this.circuit.isComplete()) {
+        setTimeout(() => debug(n + 1), 1000)
+      }
+    }
+    // debug(0)
+    this.circuit.next()
+    this.circuit.debug()
+  }
+
+  public newConnection = (source: Gate, target: Gate, index: number) => {
+    const connection = this.createConnection()
+
+    connection.setSource(source.getOutputPort(0))
+    connection.setTarget(target.getInputPort(index))
+
+    super.add(connection)
+  }
+
+  public addConnection = (connection: draw2d.Connection) => {
+    const source = connection.sourcePort.parent
+    const target = connection.targetPort.parent
+
+    this.circuit.addConnection(source.node, target.node, getPortIndex(connection.targetPort, 'input'))
+  }
+
+  public removeConnection = (connection: draw2d.Connection) => {
+    const sourceNode: Gate = connection.sourcePort.parent
+    const targetIndex: number = getPortIndex(connection.targetPort, 'input')
+
+    // this.circuit.removeConnection(sourceNode, targetIndex)
+    console.log('source port index: ', sourceNode)
+    console.log('target port index: ', targetIndex)
   }
 
   public setMouseMode(mode: string) {

@@ -8,6 +8,10 @@ class InputNode extends CircuitNode {
     this.newValue = value
     this.eval = () => value
   }
+
+  reset () {
+    // noop
+  }
 }
 
 export default InputNode
