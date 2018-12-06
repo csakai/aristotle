@@ -50,6 +50,7 @@ class Gate extends draw2d.shape.basic.Image {
     this.render()
     this.on('click', this.click)
     this.on('added', this.addEventListeners)
+    this.cssClass = 'basic-image'
   }
 
   addEventListeners = () => {
@@ -99,6 +100,7 @@ class Gate extends draw2d.shape.basic.Image {
   }
 
   updateValue = (value) => {
+    console.log(`${this.name} updated to ${value}`)
     let newColor = '#808080'
 
     if (value === LogicValue.TRUE) {

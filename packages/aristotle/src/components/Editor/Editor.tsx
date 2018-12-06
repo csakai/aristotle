@@ -1,8 +1,11 @@
-import Canvas from '@/designer/Canvas'
+import Editor from '@/designer/Editor'
 // @ts-ignore
 import Gate from '@/designer/Gate'
 import { Component, Vue } from 'vue-property-decorator'
-import { LogicValue, Circuit, InputNode, Nor, OutputNode } from '@aristotle/logic-circuit'
+import { LogicValue } from '@aristotle/logic-circuit'
+import LogicGate from '@/designer/elements/gates/LogicGate'
+import Switch from '@/designer/elements/inputs/Switch'
+import Lightbulb from '@/designer/elements/outputs/Lightbulb'
 
 @Component
 export default class extends Vue {
@@ -20,31 +23,20 @@ export default class extends Vue {
   }
 
   public step () {
-    // this.canvas.circuit.next()
-    // this.canvas.circuit.debug()
-    const next = (n: number) => {
-      console.log(`------------ PASS ${n} ------------`)
-      this.canvas.circuit.next()
-      this.canvas.circuit.debug()
-
-      if (!this.canvas.circuit.isComplete()) {
-        setTimeout(() => next(n + 1), 1000)
-      }
-    }
-    next(1)
+    this.canvas.step()
   }
 
   public mounted () {
-    this.canvas = new Canvas('canvas')
+    this.canvas = new Editor('canvas')
 
-    const R = new Gate('Input', 'R')
-    const S = new Gate('Input', 'S')
+    const R = new Switch('R')
+    const S = new Switch('S')
 
-    const NOR_1 = new Gate('Nor', 'NOR_1')
-    const NOR_2 = new Gate('Nor', 'NOR_2')
+    const NOR_1 = new LogicGate('NOR_1', 'NOR')
+    const NOR_2 = new LogicGate('NOR_2', 'NOR')
 
-    const OUT_1 = new Gate('Output', 'OUT_1')
-    const OUT_2 = new Gate('Output', 'OUT_2')
+    const OUT_1 = new Lightbulb('OUT_1')
+    const OUT_2 = new Lightbulb('OUT_2')
 
     this.canvas.addNode(R, 0, 350)
     this.canvas.addNode(S, 0, 450)
@@ -74,8 +66,8 @@ export default class extends Vue {
           <div
             id='canvas'
             style={{
-              width: this.canvasWidth + 'px',
-              height: this.canvasHeight + 'px'
+              width: '4998px', // this.canvasWidth + 'px',
+              height: '4998px' // this.canvasHeight + 'px'
             }}
           />
         </div>

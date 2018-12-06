@@ -11,11 +11,11 @@ const STROKE_COLOR = '#000'
 
 function toSvg (tag, attrs, children = []) {
   const attributes = [tag]
-  
+
   for (const key in attrs) {
     attributes.push(`${key}="${attrs[key]}"`)
   }
-  
+
   if (children.length) {
     return `<${attributes.join(' ')}>${children.join('')}</${tag}>`
   }
@@ -46,13 +46,13 @@ function getVerticalWire (x, y) {
 
 function getLabelData (label) {
   let text = label.toUpperCase()
-  
+
   if (text.length > 3) {
     text = `${text.substring(0, 2)}…`
   }
-  
+
   const width = text.length * 7.25
-  
+
   return { text, width }
 }
 
@@ -66,25 +66,25 @@ function getLabel (x, y, text) {
 
 function getTopLabel (label, x, y) {
   const { text, width } = getLabelData(label)
-  
+
   return getLabel(x - width / 2, y + LABEL_PADDING, text)
 }
 
 function getLeftLabel (label, x, y) {
   const { text, width } = getLabelData(label)
-  
+
   return getLabel(x + LABEL_PADDING, y, text)
 }
 
 function getRightLabel (label, x, y) {
   const { text, width } = getLabelData(label)
-  
+
   return getLabel(x - width - LABEL_PADDING, y, text)
 }
 
 function getBottomLabel (label, x, y) {
   const { text, width } = getLabelData(label)
-  
+
   return getLabel(x - width / 2, y - WIRE_LENGTH - LABEL_HEIGHT - LABEL_PADDING, text)
 }
 
@@ -95,7 +95,7 @@ function getPortOffset (dimension, wireLength) {
 function getLeftWires (wires, svgHeight, x) {
   const children = []
   const y = getPortOffset(svgHeight, wires.length)
-  
+
   return wires
     .map(({ label, type }, i) => ({
       wire: getHorizontalWire(x, y + i * PORT_WIDTH),
@@ -111,7 +111,7 @@ function getLeftWires (wires, svgHeight, x) {
 function getRightWires (wires, svgHeight, x) {
   const children = []
   const y = getPortOffset(svgHeight, wires.length)
-  
+
   return wires
     .map(({ label, type }, i) => ({
       wire: getHorizontalWire(x, y + i * PORT_WIDTH),
@@ -127,7 +127,7 @@ function getRightWires (wires, svgHeight, x) {
 function getTopWires (wires, svgWidth, y) {
   const children = []
   const x = getPortOffset(svgWidth, wires.length)
-  
+
   return wires
     .map(({ label, type }, i) => ({
       wire: getVerticalWire(x + i * PORT_WIDTH, y),
@@ -143,7 +143,7 @@ function getTopWires (wires, svgWidth, y) {
 function getBottomWires (wires, svgWidth, y) {
   const children = []
   const x = getPortOffset(svgWidth, wires.length)
-  
+
   return wires
     .map(({ label, type }, i) => ({
       wire: getVerticalWire(x + i * PORT_WIDTH, y),
@@ -185,7 +185,7 @@ function getWireGroups (wires, { width, height }) {
   }
 }
 
-function getBoundary (width, height, color) {
+function getBoundary (width, height, color, bgColor = '#fff') {
   return toSvg('rect', {
     x: WIRE_LENGTH,
     y: WIRE_LENGTH,
@@ -193,7 +193,7 @@ function getBoundary (width, height, color) {
     height: height - WIRE_LENGTH * 2,
     stroke: color,
     'stroke-width': STROKE_WIDTH,
-    fill: '#fff'
+    fill: bgColor
   })
 }
 
@@ -206,7 +206,7 @@ function getSvgDimensions (wires) {
   const baseHeight = vertCount * PORT_WIDTH + vertCount * STROKE_WIDTH + baseDim
   const width = Math.max(baseWidth, MIN_WIDTH)
   const height = Math.max(baseHeight, MIN_HEIGHT)
-  
+
   return { width, height }
 }
 
@@ -214,11 +214,11 @@ function toDataUrl (svg) {
   return 'data:image/svg+xml;base64,' + btoa(unescape(encodeURIComponent(svg)))
 }
 
-function render (data, color) {
+function render (data, color, bgColor) {
   const { width, height } = getSvgDimensions(data)
   const { wires, labels, ports } = getWireGroups(data, { width, height })
-  const boundary = getBoundary(width, height, color)
-  const svg = toSvg('svg', { 
+  const boundary = getBoundary(width, height, color, bgColor)
+  const svg = toSvg('svg', {
     width,
     height,
     xmlns: 'http://www.w3.org/2000/svg'

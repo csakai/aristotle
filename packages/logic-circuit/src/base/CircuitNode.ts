@@ -1,5 +1,6 @@
 import Connection from '../types/Connection'
 import LogicValue from '../types/LogicValue'
+import OutputNode from './OutputNode'
 
 class CircuitNode {
   inputValues: Array<number> = []
@@ -10,15 +11,17 @@ class CircuitNode {
 
   name: string
 
-  constructor (name) {
-    this.name = name
-  }
-
   value: number = LogicValue.UNKNOWN
 
   newValue: number = LogicValue.UNKNOWN
 
   events: Array<{ eventType: string, callback: Function }> = []
+
+  needsCalculation: boolean = true
+
+  constructor (name) {
+    this.name = name
+  }
 
   protected eval (): number {
     return this.value
@@ -48,11 +51,8 @@ class CircuitNode {
       this.value = this.newValue
       this.updateOutputs(this.newValue)
       this.invokeEvent('change', this.newValue)
-      this.newValue = LogicValue.UNKNOWN
 
-      return this.outputs.map(({ node }) => {
-        return node
-      })
+      return this.outputs.map(({ node }) => node)
     }
     return []
   }

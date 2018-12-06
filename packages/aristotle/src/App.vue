@@ -18,9 +18,12 @@ export default class App extends Vue {}
 
 <style lang="scss">
 rect.draw2d {
-  &_shape_basic_Rectangle,
   &_ResizeHandle {
     display: none;
+  }
+
+  &_shape_basic_Rectangle:not(:last-of-type) {
+    stroke: none;
   }
 }
 </style>
