@@ -18,7 +18,7 @@ export default class Switch extends Element {
     const newValue = this.node.value === LogicValue.TRUE ? LogicValue.FALSE : LogicValue.TRUE
     this.node.setValue(newValue)
     this.canvas.step(true)
-    this.canvas.circuit.enqueueInputs()
+    this.canvas.circuit.queue.push(this.node)
   }
 
   protected getSvg = (color: string) => {

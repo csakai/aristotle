@@ -1,50 +1,88 @@
 import CircuitNode from '../base/CircuitNode'
 import InputNode from '../base/InputNode'
-import Connection from '../types/Connection';
-import LogicValue from '../types/LogicValue';
+import Connection from '../types/Connection'
+import LogicValue from '../types/LogicValue'
 
 class Circuit {
-  queue: Array<CircuitNode> = []
+  /**
+   * The debugger processing queue.
+   *
+   * @type {Array<CircuitNode>}
+   */
+  public queue: Array<CircuitNode> = []
 
-  nodes: Array<CircuitNode> = []
+  /**
+   * A list of all the nodes in the circuit.
+   *
+   * @type {Array<CircuitNode>}
+   */
+  public nodes: Array<CircuitNode> = []
 
-  inputs: Array<InputNode> = []
+  /**
+   * A list of all input nodes in the circuit.jest
+   *
+   * @type {Array<CircuitNode>}
+   */
+  public inputs: Array<InputNode> = []
 
-  addNode (node: CircuitNode) {
+  /**
+   * Adds a node to the circuit and its appropriate queue(s).
+   *
+   * @param {CircuitNode} node - node to add
+   */
+  public addNode (node: CircuitNode) {
     if (node instanceof InputNode) {
       this.inputs.push(node)
+      this.updateQueue([node])
     }
     this.nodes.push(node)
-    this.enqueueInputs()
   }
 
-  removeNode (node: CircuitNode) {
+  /**
+   * Removes a node from the circuit and its appropriate queue(s).
+   *
+   * @param {CircuitNode} node - node to remove
+   */
+  public removeNode (node: CircuitNode) {
     if (node instanceof InputNode) {
       this.inputs.splice(this.inputs.indexOf(node), 1)
+      this.reset()
     }
     this.nodes.splice(this.nodes.indexOf(node), 1)
     this.removeNodeOutputs(node)
-    this.enqueueInputs()
     this.next()
   }
 
-  addConnection (source: CircuitNode, target: CircuitNode, index: number) {
-    source.outputs.push(new Connection(target, index))
+  /**
+   * Adds a connection entry from the source node to the target node on the given index.
+   *
+   * @param {CircuitNode} source - source node
+   * @param {CircuitNode} target - target node
+   * @param {Number} targetIndex - entry index on the target node for the connection
+   */
+  addConnection (source: CircuitNode, target: CircuitNode, targetIndex: number) {
+    source.outputs.push(new Connection(target, targetIndex))
     source.value = LogicValue.UNKNOWN
-    this.queue.push(source)
+    this.updateQueue([source])
     this.next()
   }
 
-  removeConnection (source: CircuitNode, index: number) {
-    const connectionIndex = source
+  removeConnection (source: CircuitNode, sourceIndex: number) {
+    source
       .outputs
-      .filter((connection) => connection.index === index)
-      .map((connection) => connection.index)
-      .pop()
+      .concat()
+      .forEach(({ node, index }: Connection, i: number) => {
+        if (sourceIndex === i) {
+          // reset the input of the target for this connection to hi-Z
+          node.update(LogicValue.UNKNOWN, index)
 
-    source.outputs.splice(connectionIndex, 1)
-    source.value = LogicValue.UNKNOWN
-    this.queue.push(source)
+          // remove the output entry at the source
+          source.outputs.splice(sourceIndex, 1)
+
+          // place the target node in the queue for processing
+          this.updateQueue([node])
+        }
+      })
     this.next()
   }
 
@@ -54,17 +92,18 @@ class Circuit {
     }
   }
 
-  enqueueInputs () {
-    this.queue = [...this.inputs]
-  }
+  updateQueue (added: Array<CircuitNode>, removed: CircuitNode = null) {
+    const removedIndex = this.queue.indexOf(removed)
 
-  updateQueue (added: Array<CircuitNode>, removed: CircuitNode) {
     added.forEach((node) => {
-      if (this.queue.indexOf(node) === -1) {
+      if (~this.queue.indexOf(node)) {
         this.queue.push(node)
       }
     })
-    this.queue.splice(this.queue.indexOf(removed), 1)
+
+    if (~removedIndex) {
+      this.queue.splice(removedIndex, 1)
+    }
   }
 
   debug () {

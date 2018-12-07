@@ -17,8 +17,6 @@ class CircuitNode {
 
   events: Array<{ eventType: string, callback: Function }> = []
 
-  needsCalculation: boolean = true
-
   constructor (name) {
     this.name = name
   }
