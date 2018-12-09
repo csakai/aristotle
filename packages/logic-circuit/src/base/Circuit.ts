@@ -33,7 +33,7 @@ class Circuit {
   public addNode (node: CircuitNode) {
     if (node instanceof InputNode) {
       this.inputs.push(node)
-      this.updateQueue([node])
+      this.enqueue(node)
     }
     this.nodes.push(node)
   }
@@ -60,67 +60,93 @@ class Circuit {
    * @param {CircuitNode} target - target node
    * @param {Number} targetIndex - entry index on the target node for the connection
    */
-  addConnection (source: CircuitNode, target: CircuitNode, targetIndex: number) {
+  public addConnection (source: CircuitNode, target: CircuitNode, targetIndex: number) {
     source.outputs.push(new Connection(target, targetIndex))
     source.value = LogicValue.UNKNOWN
-    this.updateQueue([source])
+    this.enqueue(source)
     this.next()
   }
 
-  removeConnection (source: CircuitNode, sourceIndex: number) {
-    source
+  /**
+   * Removes the connection on the source node at the source index and the connection at its target node.
+   * The input value at the target index will be reset to Hi-Z.
+   * 
+   * @param {CircuitNode} sourceNode - source node to disconnect
+   * @param {CircuitNode} targetNode - target node to disconnect
+   */
+  public removeConnection (sourceNode: CircuitNode, targetNode: CircuitNode) {
+    sourceNode
       .outputs
       .concat()
       .forEach(({ node, index }: Connection, i: number) => {
-        if (sourceIndex === i) {
+        if (targetNode === node) {
           // reset the input of the target for this connection to hi-Z
-          node.update(LogicValue.UNKNOWN, index)
+          targetNode.update(LogicValue.UNKNOWN, index)
 
           // remove the output entry at the source
-          source.outputs.splice(sourceIndex, 1)
+          sourceNode.outputs.splice(i, 1)
 
           // place the target node in the queue for processing
-          this.updateQueue([node])
+          this.enqueue(sourceNode, targetNode)
         }
       })
     this.next()
   }
 
+  /**
+   * Removes all connections from the given source node.
+   * 
+   * @param {CircuitNode} source 
+   */
   removeNodeOutputs (source: CircuitNode) {
     for (let i: number = 0; i < source.outputs.length; i++) {
-      this.removeConnection(source, i)
+      this.removeConnection(source, source.outputs[i].node)
     }
   }
 
-  updateQueue (added: Array<CircuitNode>, removed: CircuitNode = null) {
-    const removedIndex = this.queue.indexOf(removed)
-
+  /**
+   * Appends the given node(s) to the processing queue.
+   * 
+   * @param {...CircuitNode} added - node(s) to add to the queue
+   */
+  public enqueue (...added: CircuitNode[]) {
     added.forEach((node) => {
-      if (~this.queue.indexOf(node)) {
+      if (!~this.queue.indexOf(node)) {
         this.queue.push(node)
       }
     })
+  }
+
+  /**
+   * Removes the given node from the processing queue.
+   * 
+   * @param {CircuitNode} removed - node to remove from the queue
+   */
+  public dequeue (removed: CircuitNode) {
+    const removedIndex = this.queue.indexOf(removed)
 
     if (~removedIndex) {
       this.queue.splice(removedIndex, 1)
     }
   }
 
-  debug () {
-    this.nodes.forEach(({ name, value, newValue }) => {
-      console.log(`${name}:`, value, newValue)
-    })
-  }
-
-  reset () {
+  /**
+   * Resets the circuit.
+   */
+  public reset () {
     this.nodes.forEach((node) => node.reset())
   }
 
-  next () {
+  /**
+   * Advances the circuit simulation one step. If none of the node values have changed,
+   * it continues stepping through until either a value changes or the queue is empty.
+   */
+  public next () {
     let isValueChanged = false
 
     this.queue.forEach((node) => {
-      this.updateQueue(node.propagate(), node)
+      this.enqueue(...node.propagate())
+      this.dequeue(node)
 
       if (node.isValueChanged) {
         isValueChanged = true
@@ -129,13 +155,24 @@ class Circuit {
     })
 
     if (!this.isComplete() && !isValueChanged) {
-      // if the queue is not finished but no value in the circuit has changed, probe again
+      // if the queue is not finished but no value in the circuit has changed, step again
       return this.next()
     }
   }
 
-  isComplete (): boolean {
+  /**
+   * Returns true when the queue is finished processing.
+   * 
+   * @returns {Boolean}
+   */
+  public isComplete (): boolean {
     return this.queue.length === 0
+  }
+
+  debug () { // TODO: delete this
+    this.nodes.forEach(({ name, value, newValue }) => {
+      console.log(`${name}:`, value, newValue)
+    })
   }
 }
 

@@ -34,10 +34,12 @@ export default class extends Vue {
 
     const NOR_1 = new LogicGate('NOR_1', 'NOR')
     const NOR_2 = new LogicGate('NOR_2', 'NOR')
+    const NOR_3 = new LogicGate('NOR_3', 'NOR')
 
     const OUT_1 = new Lightbulb('OUT_1')
     const OUT_2 = new Lightbulb('OUT_2')
 
+    this.canvas.addNode(NOR_3, 0, 100)
     this.canvas.addNode(R, 0, 350)
     this.canvas.addNode(S, 0, 450)
     this.canvas.addNode(NOR_1, 200, 350)

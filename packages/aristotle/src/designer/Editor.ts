@@ -66,9 +66,9 @@ export default class Editor extends Canvas {
 
   public removeConnection = (connection: draw2d.Connection) => {
     const sourceNode: CircuitNode = connection.sourcePort.parent.node
-    const sourceIndex: number = getPortIndex(connection.sourcePort, 'output')
+    const targetNode: CircuitNode = connection.targetPort.parent.node
 
-    this.circuit.removeConnection(sourceNode, sourceIndex)
+    this.circuit.removeConnection(sourceNode, targetNode)
     this.step(true)
   }
 

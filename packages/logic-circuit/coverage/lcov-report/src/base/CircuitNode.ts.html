@@ -1,14 +1,14 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Code coverage report for base/Circuit.ts</title>
+    <title>Code coverage report for src/base/CircuitNode.ts</title>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="..\prettify.css" />
-    <link rel="stylesheet" href="..\base.css" />
+    <link rel="stylesheet" href="..\..\prettify.css" />
+    <link rel="stylesheet" href="..\..\base.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style type='text/css'>
         .coverage-summary .sorter {
-            background-image: url(..\sort-arrow-sprite.png);
+            background-image: url(..\..\sort-arrow-sprite.png);
         }
     </style>
 </head>
@@ -16,28 +16,28 @@
 <div class='wrapper'>
   <div class='pad1'>
     <h1>
-      <a href="..\index.html">All files</a> / <a href="index.html">base</a> Circuit.ts
+      <a href="..\..\index.html">All files</a> / <a href="index.html">src/base</a> CircuitNode.ts
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">93.88% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>46/49</span>
+        <span class='fraction'>31/31</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">87.5% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>14/16</span>
+        <span class='fraction'>4/4</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">88.24% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>15/17</span>
+        <span class='fraction'>13/13</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">93.75% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>45/48</span>
+        <span class='fraction'>30/30</span>
       </div>
     </div>
   </div>
@@ -206,61 +206,116 @@
 161
 162
 163
-164
-165
-166
-167
-168
-169
-170
-171
-172
-173
-174
-175
-176
-177
-178
-179
-180
-181</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+164</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">100x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">100x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">100x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">100x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">100x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">100x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">100x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">23x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">53x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">33x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">33x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">33x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">17x</span>
-<span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">17x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -269,88 +324,26 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">9x</span>
-<span class="cline-any cline-yes">9x</span>
-<span class="cline-any cline-yes">9x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">10x</span>
-<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">21x</span>
-<span class="cline-any cline-yes">25x</span>
-<span class="cline-any cline-yes">16x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -358,241 +351,197 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">12x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">12x</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">12x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">11x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import CircuitNode from '../base/CircuitNode'
-import InputNode from '../base/InputNode'
-import Connection from '../types/Connection'
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import Connection from '../types/Connection'
 import LogicValue from '../types/LogicValue'
+import OutputNode from './OutputNode'
 &nbsp;
-class Circuit {
+class CircuitNode {
   /**
-   * The debugger processing queue.
-   *
-   * @type {Array&lt;CircuitNode&gt;}
-   */
-  public queue: Array&lt;CircuitNode&gt; = []
-&nbsp;
-  /**
-   * A list of all the nodes in the circuit.
-   *
-   * @type {Array&lt;CircuitNode&gt;}
-   */
-  public nodes: Array&lt;CircuitNode&gt; = []
-&nbsp;
-  /**
-   * A list of all input nodes in the circuit.jest
-   *
-   * @type {Array&lt;CircuitNode&gt;}
-   */
-  public inputs: Array&lt;InputNode&gt; = []
-&nbsp;
-  /**
-   * Adds a node to the circuit and its appropriate queue(s).
-   *
-   * @param {CircuitNode} node - node to add
-   */
-  public addNode (node: CircuitNode) {
-    if (node instanceof InputNode) {
-      this.inputs.push(node)
-      this.enqueue(node)
-    }
-    this.nodes.push(node)
-  }
-&nbsp;
-  /**
-   * Removes a node from the circuit and its appropriate queue(s).
-   *
-   * @param {CircuitNode} node - node to remove
-   */
-  public removeNode (node: CircuitNode) {
-    if (node instanceof InputNode) {
-      this.inputs.splice(this.inputs.indexOf(node), 1)
-      this.reset()
-    }
-    this.nodes.splice(this.nodes.indexOf(node), 1)
-    this.removeNodeOutputs(node)
-    this.next()
-  }
-&nbsp;
-  /**
-   * Adds a connection entry from the source node to the target node on the given index.
-   *
-   * @param {CircuitNode} source - source node
-   * @param {CircuitNode} target - target node
-   * @param {Number} targetIndex - entry index on the target node for the connection
-   */
-  public addConnection (source: CircuitNode, target: CircuitNode, targetIndex: number) {
-    source.outputs.push(new Connection(target, targetIndex))
-    source.value = LogicValue.UNKNOWN
-    this.enqueue(source)
-    this.next()
-  }
-&nbsp;
-  /**
-   * Removes the connection on the source node at the source index and the connection at its target node.
-   * The input value at the target index will be reset to Hi-Z.
+   * Incoming values, to be used for calculation of the node's state.
    * 
-   * @param {CircuitNode} sourceNode - source node to disconnect
-   * @param {CircuitNode} targetNode - target node to disconnect
+   * @type {Array&lt;LogicValue&gt;}
    */
-  public removeConnection (sourceNode: CircuitNode, targetNode: CircuitNode) {
-    sourceNode
-      .outputs
-      .concat()
-      .forEach(({ node, index }: Connection, i: number) =&gt; {
-        if (targetNode === node) {
-          // reset the input of the target for this connection to hi-Z
-          targetNode.update(LogicValue.UNKNOWN, index)
+  public inputValues: Array&lt;number&gt; = []
 &nbsp;
-          // remove the output entry at the source
-          sourceNode.outputs.splice(i, 1)
+  /**
+   * List of outgoing connections.
+   * 
+   * @type {Array&lt;Connection&gt;}
+   */
+  public outputs: Array&lt;Connection&gt; = []
 &nbsp;
-          // place the target node in the queue for processing
-          this.enqueue(sourceNode, targetNode)
-        }
-      })
-    this.next()
+  /**
+   * Flag for if the value of the node has changed since last circuit evaluation.
+   * 
+   * @type {Boolean}
+   */
+  public isValueChanged: boolean = false
+&nbsp;
+  /**
+   * Name of the node.
+   * 
+   * @type {String}
+   */
+  public name: string
+&nbsp;
+  /**
+   * Current value of the node.
+   * 
+   * @type {LogicValue}
+   * @default LogicValue.UNKNOWN
+   */
+  public value: number = LogicValue.UNKNOWN
+&nbsp;
+  /**
+   * Next value for the node.
+   * 
+   * @type {LogicValue}
+   * @default LogicValue.UNKNOWN
+   */
+  public newValue: number = LogicValue.UNKNOWN
+&nbsp;
+  /**
+   * List of dictionaries containing event types and their respective callbacks.
+   * Used for the invocation of event listeners when their respective events are fired.
+   * 
+   * @type {Array&lt;Object&gt;}
+   */
+  public events: Array&lt;{ eventType: string, callback: Function }&gt; = []
+&nbsp;
+  /**
+   * Constructor.
+   * 
+   * @param {String} name - name of the node
+   */
+  constructor (name) {
+    this.name = name
   }
 &nbsp;
   /**
-   * Removes all connections from the given source node.
+   * Invokes the registered events having the given `eventType`.
    * 
-   * @param {CircuitNode} source 
+   * @param {String} eventType - 'change' or 'reset'
+   * @param {LogicValue} value 
    */
-  removeNodeOutputs (source: CircuitNode) {
-    for (let i: number = 0; i &lt; source.outputs.length; i++) {
-      this.removeConnection(source, source.outputs[i].node)
-    }
-  }
-&nbsp;
-  /**
-   * Appends the given node(s) to the processing queue.
-   * 
-   * @param {...CircuitNode} added - node(s) to add to the queue
-   */
-  public enqueue (...added: CircuitNode[]) {
-    added.forEach((node) =&gt; {
-      if (!~this.queue.indexOf(node)) {
-        this.queue.push(node)
+  protected invokeEvent (eventType: string, value: number) {
+    this.events.forEach((event) =&gt; {
+      if (event.eventType === eventType) {
+        event.callback(value)
       }
     })
   }
 &nbsp;
   /**
-   * Removes the given node from the processing queue.
+   * Evaluates the node. Default behavior returns the current value.
    * 
-   * @param {CircuitNode} removed - node to remove from the queue
+   * @returns {LogicValue}
    */
-  public dequeue (removed: CircuitNode) {
-    const removedIndex = this.queue.indexOf(removed)
-&nbsp;
-    if (~removedIndex) {
-      this.queue.splice(removedIndex, 1)
-    }
+  protected eval (): number {
+    return this.value
   }
 &nbsp;
   /**
-   * Resets the circuit.
+   * Calculates how many input values equal the given comparison value.
+   * 
+   * @param {LogicValue} compare - value to get count of
+   * @returns {Number}
+   */
+  protected valueCount (compare: number): number {
+    return this
+      .inputValues
+      .filter((value) =&gt; value === compare)
+      .length
+  }
+&nbsp;
+  /**
+   * Updates all outgoing connected nodes with the given value.
+   * 
+   * @param {LogicValue} newValue - new value to output to the nodes
+   */
+  public updateOutputs (newValue: number) {
+    this.outputs.forEach(({ node, index }: Connection) =&gt; {
+      node.update(newValue, index)
+    })
+  }
+&nbsp;
+  /**
+   * Updates the input value at the given index with the given value.
+   * 
+   * @param {LogicValue} value - new value
+   * @param {Number} index - source index
+   */
+  public update (value: number, index: number) {
+    this.inputValues[index] = value
+    this.newValue = this.eval()
+  }
+&nbsp;
+  /**
+   * Propagates a signal, if the value of the node has changed.
+   * 
+   * @returns {Array&lt;CircuitNodes&gt;} list of all outgoing connected nodes
+   */
+  public propagate (): Array&lt;CircuitNode&gt; {
+    if (this.value !== this.newValue) {
+      this.isValueChanged = true
+      this.value = this.newValue
+      this.updateOutputs(this.newValue)
+      this.invokeEvent('change', this.newValue)
+&nbsp;
+      return this.outputs.map(({ node }) =&gt; node)
+    }
+    return []
+  }
+&nbsp;
+  /**
+   * Resets the value and subsequent value of the node with Hi-Z.
    */
   public reset () {
-    this.nodes.forEach((node) =&gt; node.reset())
+    this.value = LogicValue.UNKNOWN
+    this.newValue = LogicValue.UNKNOWN
+    this.invokeEvent('change', this.newValue)
   }
 &nbsp;
   /**
-   * Advances the circuit simulation one step. If none of the node values have changed,
-   * it continues stepping through until either a value changes or the queue is empty.
-   */
-  public next () {
-    let isValueChanged = false
-&nbsp;
-    this.queue.forEach((node) =&gt; {
-      this.enqueue(...node.propagate())
-      this.dequeue(node)
-&nbsp;
-      if (node.isValueChanged) {
-        isValueChanged = true
-        node.isValueChanged = false
-      }
-    })
-&nbsp;
-    <span class="missing-if-branch" title="if path not taken" >I</span>if (!this.isComplete() &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >!isValueChanged)</span> {
-      // if the queue is not finished but no value in the circuit has changed, step again
-<span class="cstat-no" title="statement not covered" >      return this.next()</span>
-    }
-  }
-&nbsp;
-  /**
-   * Returns true when the queue is finished processing.
+   * Registers an event listener.
    * 
-   * @returns {Boolean}
+   * @param {String} eventType - 'change' or 'reset'
+   * @param {Function} callback - method to invoke on event
    */
-  public isComplete (): boolean {
-    return this.queue.length === 0
-  }
-&nbsp;
-<span class="fstat-no" title="function not covered" >  debug</span> () { // TODO: delete this
-<span class="cstat-no" title="statement not covered" >    this.nodes.forEach(<span class="fstat-no" title="function not covered" >({</span> name, value, newValue }) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >      console.log(`${name}:`, value, newValue)</span>
-    })
+  public on (eventType: string, callback: Function) {
+    this.events.push({ eventType, callback })
   }
 }
 &nbsp;
 &nbsp;
-export default Circuit
+export default CircuitNode
 &nbsp;</pre></td></tr>
 </table></pre>
 <div class='push'></div><!-- for sticky footer -->
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sun Dec 09 2018 09:20:20 GMT-0500 (Eastern Standard Time)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sun Dec 09 2018 09:17:53 GMT-0500 (Eastern Standard Time)
 </div>
 </div>
-<script src="..\prettify.js"></script>
+<script src="..\..\prettify.js"></script>
 <script>
 window.onload = function () {
         if (typeof prettyPrint === 'function') {
@@ -600,6 +549,6 @@ window.onload = function () {
         }
 };
 </script>
-<script src="..\sorter.js"></script>
+<script src="..\..\sorter.js"></script>
 </body>
 </html>
